@@ -15,3 +15,8 @@ main{
 footer{
  min-height: 8vh;
  }
+
+ ul{
+   list-style-type: none;
+   padding: 0px;
+ }

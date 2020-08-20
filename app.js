@@ -16,7 +16,9 @@ let player = {
 strength: 1,
 hits: 0,
 knockouts: 0,
-equipedWeapon: items.trainingSword,
+inventory: {
+    weapon: items.trainingSword 
+},
 }
 
 let enemy = {
@@ -92,6 +94,11 @@ function drawHealth(){
     document.getElementById("healthbar").setAttribute("style",`width:${healthPercent}%`)
 }
 
+function drawItems(){
+   const item = player.inventory
+    document.getElementById("weapon").innerText = item.weapon.name + ` (${item.weapon.modifier})` || "none"
+}
+
 function update() {
     document.getElementById("health").innerText = enemy.health.toString()
     document.getElementById("enemyName").innerText = enemy.name
@@ -100,6 +107,7 @@ function update() {
     document.getElementById("strength").innerText = player.strength.toString()
     drawHealth()
     unlocks()
+    drawItems()
     if(enemy.health <= 0){
         respawn()
     }
