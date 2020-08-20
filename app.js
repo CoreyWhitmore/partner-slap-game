@@ -1,7 +1,7 @@
-let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan","Kholgan", "Grug","Hunter","Darius","Tezzert","Gideon", "Amber", "Sarah","Julie"];
+let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan", "Kholgan", "Grug", "Hunter", "Darius", "Tezzert", "Gideon", "Amber", "Sarah", "Julie"];
 
-let items ={
-    trainingSword:{
+let items = {
+    trainingSword: {
         name: "Training Sword",
         modifier: 1,
         rarity: "dirt",
@@ -45,14 +45,14 @@ inventory: {
 }
 
 let enemy = {
-health: 50,
-maxHealth: 50,
-name: "Bob"
+    health: 50,
+    maxHealth: 50,
+    name: "Bob"
 }
 
 
-function nameGenerator(){
-    let random = Math.floor(Math.random()*(nameArray.length-.001))
+function nameGenerator() {
+    let random = Math.floor(Math.random() * (nameArray.length - .001))
     enemy.name = nameArray[random]
 }
 
@@ -83,7 +83,7 @@ function kick() {
     }, 2000);
 }
 
-function lift(){
+function lift() {
     player.strength++
     update()
 }
@@ -97,29 +97,29 @@ function damage(number){
     enemy.health -= number*player.strength*player.inventory.weapon.modifier
 }
 
-function respawn(){
+function respawn() {
     player.knockouts++
-    enemy.maxHealth = 100* (player.knockouts)
+    enemy.maxHealth = 100 * (player.knockouts)
     enemy.health = enemy.maxHealth
     nameGenerator()
     update()
 }
 
-function unlocks(){
-    if(player.strength == 5){
+function unlocks() {
+    if (player.strength == 5) {
         document.getElementById("punchButton").removeAttribute("disabled")
     }
-    if(player.strength == 10){
+    if (player.strength == 10) {
         document.getElementById("kickButton").removeAttribute("disabled")
     }
-    if(player.knockouts>=1){
+    if (player.knockouts >= 1) {
         document.getElementById("liftButton").removeAttribute("disabled")
     }
 }
 
-function drawHealth(){
-    let healthPercent = (enemy.health/enemy.maxHealth)*100 
-    document.getElementById("healthbar").setAttribute("style",`width:${healthPercent}%`)
+function drawHealth() {
+    let healthPercent = (enemy.health / enemy.maxHealth) * 100
+    document.getElementById("healthbar").setAttribute("style", `width:${healthPercent}%`)
 }
 
 function drawItems(){
