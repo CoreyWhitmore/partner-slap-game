@@ -4,32 +4,63 @@ let items = {
     trainingSword: {
         name: "Training Sword",
         modifier: 1,
-        rarity: "dirt",
+        rarity: 0,
         type: "weapon"
     },
     copperSword:{
         name: "Copper Sword",
         modifier: 2,
-        rarity: "common",
+        rarity: 1,
         type: "weapon"
     },
     ironSword:{
         name: "Iron Sword",
         modifier: 3,
-        rarity: "uncommon",
+        rarity: 2,
         type: "weapon"
     },
     steelSword:{
         name: "Steel Sword",
         modifier: 4,
-        rarity: "rare",
+        rarity: 3,
         type: "weapon"
     },
     miythrilSword:{
         name: "Mythril Sword",
         modifier: 5,
-        rarity: "legendary",
+        rarity: 4,
         type: "weapon"
+    },
+    // End of Weapons
+    trainingHelmet: {
+        name: "Training Helmet",
+        modifier: 1,
+        rarity: 0,
+        type: "head"
+    },
+    copperHelmet:{
+        name: "Copper Helmet",
+        modifier: 2,
+        rarity: 1,
+        type: "head"
+    },
+    ironHelmet:{
+        name: "Iron Helmet",
+        modifier: 3,
+        rarity: 2,
+        type: "head"
+    },
+    steelHelmet:{
+        name: "Steel Helmet",
+        modifier: 4,
+        rarity: 3,
+        type: "head"
+    },
+    miythrilHelmet:{
+        name: "Mythril Helmet",
+        modifier: 5,
+        rarity: 4,
+        type: "head"
     },
 
 
@@ -41,7 +72,11 @@ hits: 0,
 dexterity: 1,
 knockouts: 0,
 inventory: {
-    weapon: items.trainingSword
+    weapon: items.trainingSword,
+    head: items.trainingHelmet,
+    body: items.trainingBody,
+    pants: items.trainingPants,
+    boots: items.trainingBoots,
 },
 }
 
@@ -100,7 +135,7 @@ function devKill(){
 }
 
 function damage(number){
-    enemy.health -= number*player.strength*player.inventory.weapon.modifier
+    enemy.health -= number*player.strength*player.inventory.weapon.modifier*player.inventory.head.modifier
 }
 
 function respawn() {
@@ -133,7 +168,11 @@ function drawHealth() {
 
 function drawItems(){
    const item = player.inventory
-    document.getElementById("weapon").innerText = item.weapon.name + ` (${item.weapon.modifier})` || "none"
+    document.getElementById("weapon").innerText = item.weapon.name + ` (${item.weapon.modifier})`
+    document.getElementById("head").innerText = item.head.name + ` (${item.head.modifier})`
+    document.getElementById("body").innerText = item.body.name + ` (${item.body.modifier})`
+    document.getElementById("pants").innerText = item.pants.name + ` (${item.pants.modifier})`
+    document.getElementById("boots").innerText = item.boots.name + ` (${item.boots.modifier})`
 }
 
 function lottery(){
