@@ -177,7 +177,29 @@ function drawItems(){
 
 function lottery(){
     let luck = Math.floor(Math.random()*100)
+    let slotNumber = Math.floor(Math.random()*4.99)
     let droppedItem
+    let slot
+    switch (slotNumber) {
+        case 0:
+           slot = "weapon";
+            break;
+        case 1:
+           slot = "head";
+            break;
+        case 2:
+           slot = "body";
+            break;
+        case 3:
+           slot = "pants";
+            break;
+        case 4:
+           slot = "boots";
+            break;                
+        default:
+            break;
+    }
+
     if(luck <= 50){
         droppedItem = player.inventory.weapon
         console.log("No Drop")
