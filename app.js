@@ -277,49 +277,56 @@ function lottery() {
     let slotNumber = Math.floor(Math.random() * 4.99)
     let droppedItem
     let slot
+    let targetedSlot
     switch (slotNumber) {
         case 0:
-            slot = "weapon";
+            slot = weapon;
+            targetedSlot = player.inventory.weapon;
             break;
         case 1:
-            slot = "head";
+            slot = head;
+            targetedSlot = player.inventory.head;
             break;
         case 2:
-            slot = "body";
+            slot = body;
+            targetedSlot = player.inventory.body;
             break;
         case 3:
-            slot = "pants";
+            slot = pants;
+            targetedSlot = player.inventory.pants;
             break;
         case 4:
-            slot = "boots";
+            slot = boots;
+            targetedSlot = player.inventory.boots;
             break;
         default:
             break;
     }
-
     if (luck <= 50) {
-        droppedItem = player.inventory.weapon
+        droppedItem = targetedSlot
         console.log("No Drop")
     }
     else if (luck < 75) {
-        droppedItem = items.copperSword
+        droppedItem = slot[1]
         console.log(droppedItem.name)
     }
     else if (luck < 89) {
-        droppedItem = items.ironSword
+        droppedItem = slot[2]
         console.log(droppedItem.name)
     }
     else if (luck < 97) {
-        droppedItem = items.steelSword
+        droppedItem = slot[3]
         console.log(droppedItem.name)
     }
     else if (luck < 100) {
-        droppedItem = items.miythrilSword
+        droppedItem = slot[4]
         console.log(droppedItem.name)
     }
 
-    if (droppedItem.modifier > player.inventory.weapon.modifier) {
-        player.inventory.weapon = droppedItem
+    if (droppedItem.modifier > targetedSlot.modifier) {
+        console.log(targetedSlot);
+        targetedSlot = droppedItem
+        console.log();
     }
 }
 
