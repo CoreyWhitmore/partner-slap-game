@@ -335,6 +335,30 @@ function lottery() {
     }
 }
 
+function reset(){
+    player = {
+        strength: 1,
+        hits: 0,
+        dexterity: 1,
+        knockouts: 0,
+        inventory: {
+            weapon: weapon[0],
+            head: head[0],
+            body: body[0],
+            pants: pants[0],
+            boots: boots[0],
+        },
+    }
+    enemy = {
+        health: 50,
+        maxHealth: 50,
+        name: "Bob"
+    }
+    punchUnlock = false
+    kickUnlock = false
+    update()
+}
+
 function update() {
     document.getElementById("health").innerText = enemy.health.toString()
     document.getElementById("enemyName").innerText = enemy.name
