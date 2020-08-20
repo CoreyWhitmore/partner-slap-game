@@ -1,10 +1,22 @@
 let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan","Kholgan", "Grug","Hunter","Darius","Tezzert","Gideon", "Amber", "Sarah","Julie"];
 
+let items ={
+    trainingSword:{
+        name: "Training Sword",
+        modifier: 2,
+        rarity: "common",
+        type: "weapon"
+    },
+
+
+
+}
+
 let player = {
-strength: 5,
+strength: 1,
 hits: 0,
 knockouts: 0,
-
+equipedWeapon: items.trainingSword,
 }
 
 let enemy = {
@@ -13,19 +25,20 @@ maxHealth: 50,
 name: "Bob"
 }
 
+
 function nameGenerator(){
     let random = Math.floor(Math.random()*(nameArray.length-.001))
     enemy.name = nameArray[random]
 }
 
 function slap() {
-    enemy.health -= player.strength
+    damage(1)
     player.hits++
     update()
 }
 
 function punch() {
-    enemy.health -= 5*player.strength
+    damage(5)
     player.hits++
     update()
     document.getElementById("punchButton").setAttribute("disabled", "")
@@ -36,7 +49,7 @@ function punch() {
 }
 
 function kick() {
-    enemy.health -= player.strength*player.strength
+    damage(player.strength)
     player.hits++
     update()
     document.getElementById("kickButton").setAttribute("disabled", "")
@@ -48,6 +61,10 @@ function kick() {
 function lift(){
     player.strength++
     update()
+}
+
+function damage(number){
+    enemy.health -= number*player.strength*player.equipedWeapon.modifier
 }
 
 function respawn(){
