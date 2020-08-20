@@ -3,21 +3,44 @@ let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan","Kholgan", "Grug","Hu
 let items ={
     trainingSword:{
         name: "Training Sword",
+        modifier: 1,
+        rarity: "dirt",
+        type: "weapon"
+    },
+    copperSword:{
+        name: "Copper Sword",
         modifier: 2,
         rarity: "common",
         type: "weapon"
     },
-
+    ironSword:{
+        name: "Iron Sword",
+        modifier: 3,
+        rarity: "uncommon",
+        type: "weapon"
+    },
+    steelSword:{
+        name: "Steel Sword",
+        modifier: 4,
+        rarity: "rare",
+        type: "weapon"
+    },
+    miythrilSword:{
+        name: "Mythril Sword",
+        modifier: 5,
+        rarity: "legendary",
+        type: "weapon"
+    },
 
 
 }
 
 let player = {
-strength: 1,
+strength: 5,
 hits: 0,
 knockouts: 0,
 inventory: {
-    weapon: items.trainingSword 
+    weapon: items.trainingSword
 },
 }
 
@@ -65,8 +88,13 @@ function lift(){
     update()
 }
 
+function devKill(){
+    damage(enemy.maxHealth)
+    update()
+}
+
 function damage(number){
-    enemy.health -= number*player.strength*player.equipedWeapon.modifier
+    enemy.health -= number*player.strength*player.inventory.weapon.modifier
 }
 
 function respawn(){
@@ -99,6 +127,35 @@ function drawItems(){
     document.getElementById("weapon").innerText = item.weapon.name + ` (${item.weapon.modifier})` || "none"
 }
 
+function lottery(){
+    let luck = Math.floor(Math.random()*100)
+    let droppedItem
+    if(luck <= 50){
+        droppedItem = player.inventory.weapon
+        console.log("No Drop")
+    }
+    else if(luck < 75){
+        droppedItem = items.copperSword
+        console.log(droppedItem.name)
+    }
+    else if(luck < 89){
+        droppedItem = items.ironSword
+        console.log(droppedItem.name)
+    }
+    else if(luck < 97){
+        droppedItem = items.steelSword
+        console.log(droppedItem.name)
+    }
+    else if(luck < 100){
+        droppedItem = items.miythrilSword
+        console.log(droppedItem.name)
+    }
+    
+    if(droppedItem.modifier > player.inventory.weapon.modifier){
+        player.inventory.weapon = droppedItem
+    }
+}
+
 function update() {
     document.getElementById("health").innerText = enemy.health.toString()
     document.getElementById("enemyName").innerText = enemy.name
@@ -109,6 +166,7 @@ function update() {
     unlocks()
     drawItems()
     if(enemy.health <= 0){
+        lottery()
         respawn()
     }
 }
