@@ -1,171 +1,167 @@
 let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan", "Kholgan", "Grug", "Hunter", "Darius", "Tezzert", "Gideon", "Amber", "Sarah", "Julie"];
 
-let items = {
-    //Weapons
-    trainingSword: {
+//Items
+let weapon = [
+    {
         name: "Training Sword",
         modifier: 1,
         rarity: 0,
         type: "weapon"
     },
-    copperSword: {
+    {
         name: "Copper Sword",
         modifier: 2,
         rarity: 1,
         type: "weapon"
     },
-    ironSword: {
+    {
         name: "Iron Sword",
         modifier: 3,
         rarity: 2,
         type: "weapon"
     },
-    steelSword: {
+    {
         name: "Steel Sword",
         modifier: 4,
         rarity: 3,
         type: "weapon"
     },
-    miythrilSword: {
+    {
         name: "Mythril Sword",
         modifier: 5,
         rarity: 4,
         type: "weapon"
-    },
-    // End of Weapons
+    }]
 
-    //Head
-    trainingHelmet: {
+let head = [
+    {
         name: "Training Helmet",
         modifier: 1,
         rarity: 0,
         type: "head"
     },
-    copperHelmet: {
+    {
         name: "Copper Helmet",
         modifier: 2,
         rarity: 1,
         type: "head"
     },
-    ironHelmet: {
+    {
         name: "Iron Helmet",
         modifier: 3,
         rarity: 2,
         type: "head"
     },
-    steelHelmet: {
+    {
         name: "Steel Helmet",
         modifier: 4,
         rarity: 3,
         type: "head"
     },
-    miythrilHelmet: {
+    {
         name: "Mythril Helmet",
         modifier: 5,
         rarity: 4,
         type: "head"
-    },
-    //End of Head
+    }]
 
-    //Body
-    trainingArmor: {
+let body = [
+    {
         name: "Training Armor",
         modifier: 1,
         rarity: 0,
         type: "body"
     },
-    copperArmor: {
+    {
         name: "Copper Armor",
         modifier: 2,
         rarity: 1,
         type: "body"
     },
-    ironArmor: {
+    {
         name: "Iron Armor",
         modifier: 3,
         rarity: 2,
         type: "body"
     },
-    steelArmor: {
+    {
         name: "Steel Armor",
         modifier: 4,
         rarity: 3,
         type: "body"
     },
-    miythrilArmor: {
+    {
         name: "Mythril Armor",
         modifier: 5,
         rarity: 4,
         type: "body"
-    },
-    //End of Body
+    }]
+//End of Body
 
-    //Pants
-    trainingPants: {
+let pants = [
+    {
         name: "Training Pants",
         modifier: 1,
         rarity: 0,
         type: "pants"
     },
-    copperPants: {
+    {
         name: "Copper Pants",
         modifier: 2,
         rarity: 1,
         type: "pants"
     },
-    ironPants: {
+    {
         name: "Iron Pants",
         modifier: 3,
         rarity: 2,
         type: "pants"
     },
-    steelPants: {
+    {
         name: "Steel Pants",
         modifier: 4,
         rarity: 3,
         type: "pants"
     },
-    miythrilPants: {
+    {
         name: "Mythril Pants",
         modifier: 5,
         rarity: 4,
         type: "pants"
-    },
-    //End of Pants
+    }]
 
-    //Boots
-    trainingBoots: {
+//Boots
+let boots = [
+    {
         name: "Training Boots",
         modifier: 1,
         rarity: 0,
         type: "boots"
     },
-    copperBoots: {
+    {
         name: "Copper Boots",
         modifier: 2,
         rarity: 1,
         type: "boots"
     },
-    ironBoots: {
+    {
         name: "Iron Boots",
         modifier: 3,
         rarity: 2,
         type: "boots"
     },
-    steelBoots: {
+    {
         name: "Steel Boots",
         modifier: 4,
         rarity: 3,
         type: "boots"
     },
-    miythrilBoots: {
+    {
         name: "Mythril Boots",
         modifier: 5,
         rarity: 4,
         type: "boots"
-    },
-    //End of Boots
-}
+    }]
 
 let player = {
     strength: 1,
@@ -173,11 +169,11 @@ let player = {
     dexterity: 1,
     knockouts: 0,
     inventory: {
-        weapon: items.trainingSword,
-        head: items.trainingHelmet,
-        body: items.trainingArmor,
-        pants: items.trainingPants,
-        boots: items.trainingBoots,
+        weapon: weapon[0],
+        head: head[0],
+        body: body[0],
+        pants: pants[0],
+        boots: boots[0],
     },
 }
 
@@ -276,32 +272,32 @@ function drawItems() {
     document.getElementById("boots").innerText = item.boots.name + ` (${item.boots.modifier})`
 }
 
-function lottery(){
-    let luck = Math.floor(Math.random()*100)
-    let slotNumber = Math.floor(Math.random()*4.99)
+function lottery() {
+    let luck = Math.floor(Math.random() * 100)
+    let slotNumber = Math.floor(Math.random() * 4.99)
     let droppedItem
     let slot
     switch (slotNumber) {
         case 0:
-           slot = "weapon";
+            slot = "weapon";
             break;
         case 1:
-           slot = "head";
+            slot = "head";
             break;
         case 2:
-           slot = "body";
+            slot = "body";
             break;
         case 3:
-           slot = "pants";
+            slot = "pants";
             break;
         case 4:
-           slot = "boots";
-            break;                
+            slot = "boots";
+            break;
         default:
             break;
     }
 
-    if(luck <= 50){
+    if (luck <= 50) {
         droppedItem = player.inventory.weapon
         console.log("No Drop")
     }
