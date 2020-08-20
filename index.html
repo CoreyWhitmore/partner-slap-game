@@ -22,20 +22,29 @@
             <div class="col-12">
                 <h2>Enemy: <span id="enemyName">--</span></h2>
             </div>
-            <div class="col-12">
+            <div class="col-12 my-3">
                 <img src="https://via.placeholder.com/200" alt="">
+            </div>
+            <div class="col-2 offset-5">
+                <div class="progress bg-danger">
+                    <div id="healthbar" class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                </div>
             </div>
             <div class="col-12 d-flex flex-row justify-content-center">
                 <h2 class="mr-5">Hits: <span id="hits">--</span></h2>
                 <h2>Health: <span id="health">--</span></h2>
             </div>
             <div class="col-12">
-                <button type="button" class="btn btn-primary" onclick="slap()">Slap</button>
-                <button type="button" class="btn btn-primary" onclick="punch()">Punch</button>
-                <button type="button" class="btn btn-primary" onclick="kick()">Kick</button>
+                <h3>Strength: <span id="strength">1</span></h3>
             </div>
             <div class="col-12">
-                <h2>Knockouts: <span  id="knockouts">0</span></h2>
+                <button type="button" class="btn btn-primary" onclick="slap()">Slap</button>
+                <button type="button" id="punchButton" class="btn btn-primary" onclick="punch()" disabled>Punch</button>
+                <button type="button" id="kickButton" class="btn btn-primary" onclick="kick()" disabled>Kick</button>
+                <button type="button" id="liftButton" class="btn btn-danger" onclick="lift()" disabled>Lift</button>
+            </div>
+            <div class="col-12">
+                <h2>Knockouts: <span id="knockouts">0</span></h2>
             </div>
         </div>
 
