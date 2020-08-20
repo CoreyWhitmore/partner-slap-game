@@ -1,7 +1,7 @@
 let health = 100
 let enemyName = "Bob"
 let hits = 0
-let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan","Kholgan", "Grug","Hunter","Darius","Tezzert","Gideon", "Amber", "Sarah","Julie"];
+let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan", "Kholgan", "Grug", "Hunter", "Darius", "Tezzert", "Gideon", "Amber", "Sarah", "Julie"];
 let knockouts = 0
 function slap() {
     health--
@@ -9,8 +9,8 @@ function slap() {
     update()
 }
 
-function nameGenerator(){
-    let random = Math.floor(Math.random()*(nameArray.length-.001))
+function nameGenerator() {
+    let random = Math.floor(Math.random() * (nameArray.length - .001))
     enemyName = nameArray[random]
 }
 
@@ -26,7 +26,7 @@ function kick() {
     update()
 }
 
-function respawn(){
+function respawn() {
     health = 100
     nameGenerator()
     knockouts++
@@ -38,7 +38,7 @@ function update() {
     document.getElementById("enemyName").innerText = enemyName
     document.getElementById("hits").innerText = hits.toString()
     document.getElementById("knockouts").innerText = knockouts.toString()
-    if(health <= 0){
+    if (health <= 0) {
         respawn()
     }
 }
