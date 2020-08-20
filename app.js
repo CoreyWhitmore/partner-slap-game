@@ -36,8 +36,9 @@ let items = {
 }
 
 let player = {
-strength: 5,
+strength: 1,
 hits: 0,
+dexterity: 1,
 knockouts: 0,
 inventory: {
     weapon: items.trainingSword
@@ -69,7 +70,7 @@ function punch() {
     document.getElementById("punchButton").setAttribute("disabled", "")
     setTimeout(() => {
         document.getElementById("punchButton").removeAttribute("disabled")
-    }, 1000);
+    }, (10000/(10+player.dexterity)));
 
 }
 
@@ -80,11 +81,16 @@ function kick() {
     document.getElementById("kickButton").setAttribute("disabled", "")
     setTimeout(() => {
         document.getElementById("kickButton").removeAttribute("disabled")
-    }, 2000);
+    }, (40000/(10+player.dexterity)));
 }
 
 function lift() {
     player.strength++
+    update()
+}
+
+function jog() {
+    player.dexterity++
     update()
 }
 
@@ -114,6 +120,9 @@ function unlocks() {
     }
     if (player.knockouts >= 1) {
         document.getElementById("liftButton").removeAttribute("disabled")
+    }
+    if (player.knockouts >= 5) {
+        document.getElementById("jogButton").removeAttribute("disabled")
     }
 }
 
@@ -162,6 +171,7 @@ function update() {
     document.getElementById("hits").innerText = player.hits.toString()
     document.getElementById("knockouts").innerText = player.knockouts.toString()
     document.getElementById("strength").innerText = player.strength.toString()
+    document.getElementById("dexterity").innerText = player.dexterity.toString()
     drawHealth()
     unlocks()
     drawItems()
