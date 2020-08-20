@@ -175,7 +175,7 @@ let player = {
     inventory: {
         weapon: items.trainingSword,
         head: items.trainingHelmet,
-        body: items.trainingBody,
+        body: items.trainingArmor,
         pants: items.trainingPants,
         boots: items.trainingBoots,
     },
