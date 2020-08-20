@@ -1,5 +1,5 @@
 let health = 100
-let enemyName = "EnemyName"
+let enemyName = "Bob"
 let hits = 0
 
 function slap() {
