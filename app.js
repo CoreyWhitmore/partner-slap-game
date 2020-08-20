@@ -1,5 +1,8 @@
 let nameArray = ["John", "Mike", "Lewis", "Luke", "Nathan", "Kholgan", "Grug", "Hunter", "Darius", "Tezzert", "Gideon", "Amber", "Sarah", "Julie"];
 
+let punchUnlock = false
+let kickUnlock = false
+
 //Items
 let weapon = [
     {
@@ -207,7 +210,7 @@ function punch() {
 }
 
 function kick() {
-    damage(player.strength)
+    damage(player.strength * player.inventory.boots.modifier)
     player.hits++
     update()
     document.getElementById("kickButton").setAttribute("disabled", "")
@@ -217,12 +220,12 @@ function kick() {
 }
 
 function lift() {
-    player.strength++
+    player.strength += player.inventory.body.modifier
     update()
 }
 
 function jog() {
-    player.dexterity++
+    player.dexterity += player.inventory.pants.modifier
     update()
 }
 
@@ -244,11 +247,13 @@ function respawn() {
 }
 
 function unlocks() {
-    if (player.strength == 5) {
+    if (player.strength >= 5 && !punchUnlock) {
         document.getElementById("punchButton").removeAttribute("disabled")
+        punchUnlock = true
     }
-    if (player.strength == 10) {
+    if (player.strength >= 10 && !kickUnlock) {
         document.getElementById("kickButton").removeAttribute("disabled")
+        kickUnlock = true
     }
     if (player.knockouts >= 1) {
         document.getElementById("liftButton").removeAttribute("disabled")
@@ -273,7 +278,7 @@ function drawItems() {
 }
 
 function lottery() {
-    let luck = Math.floor(Math.random() * 100)
+    let luck = Math.floor(Math.random() * 100.99)
     let slotNumber = Math.floor(Math.random() * 4.99)
     let droppedItem
     let slot
@@ -281,40 +286,40 @@ function lottery() {
     switch (slotNumber) {
         case 0:
             slot = weapon;
-            targetedSlot = player.inventory.weapon;
+            targetedSlot = "weapon";
             break;
         case 1:
             slot = head;
-            targetedSlot = player.inventory.head;
+            targetedSlot = "head";
             break;
         case 2:
             slot = body;
-            targetedSlot = player.inventory.body;
+            targetedSlot = "body";
             break;
         case 3:
             slot = pants;
-            targetedSlot = player.inventory.pants;
+            targetedSlot = "pants";
             break;
         case 4:
             slot = boots;
-            targetedSlot = player.inventory.boots;
+            targetedSlot = "boots";
             break;
         default:
             break;
     }
-    if (luck <= 50) {
-        droppedItem = targetedSlot
+    if (luck <= 70) {
+        droppedItem = player.inventory[targetedSlot]
         console.log("No Drop")
     }
-    else if (luck < 75) {
+    else if (luck < 85) {
         droppedItem = slot[1]
         console.log(droppedItem.name)
     }
-    else if (luck < 89) {
+    else if (luck < 95) {
         droppedItem = slot[2]
         console.log(droppedItem.name)
     }
-    else if (luck < 97) {
+    else if (luck < 99) {
         droppedItem = slot[3]
         console.log(droppedItem.name)
     }
@@ -322,11 +327,11 @@ function lottery() {
         droppedItem = slot[4]
         console.log(droppedItem.name)
     }
+    if (droppedItem.modifier > player.inventory[targetedSlot].modifier) {
+        console.log(player.inventory[targetedSlot]);
+        player.inventory[targetedSlot] = droppedItem
+        console.log(player.inventory[targetedSlot]);
 
-    if (droppedItem.modifier > targetedSlot.modifier) {
-        console.log(targetedSlot);
-        targetedSlot = droppedItem
-        console.log();
     }
 }
 
